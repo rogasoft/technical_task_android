@@ -3,7 +3,10 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Users/Rogalski/Documents/Android-Projekty/TechnicalTask/technical_task_android/app/src/main/res/drawable/icon_add.xml" value="0.1885" />
         <entry key="..\:/Users/Rogalski/Documents/Android-Projekty/TechnicalTask/technical_task_android/app/src/main/res/layout/activity_main.xml" value="0.22780797101449277" />
+        <entry key="..\:/Users/Rogalski/Documents/Android-Projekty/TechnicalTask/technical_task_android/app/src/main/res/layout/fragment_user_dialog.xml" value="0.536" />
+        <entry key="..\:/Users/Rogalski/Documents/Android-Projekty/TechnicalTask/technical_task_android/app/src/main/res/layout/fragment_user_list.xml" value="0.1" />
       </map>
     </option>
   </component>
