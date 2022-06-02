@@ -1,9 +1,11 @@
 package com.technical.task.data.repository
 
+import com.technical.task.BuildConfig
 import com.technical.task.data.model.AddUserState
 import com.technical.task.data.service.common.GoRestService
 import com.technical.task.data.service.common.NetworkController
 import com.technical.task.data.service.common.ServiceAction
+import com.technical.task.data.service.common.generateAuthorizationHeader
 import com.technical.task.data.service.mapper.AddUserMapper
 import com.technical.task.domain.repository.AddUserRepository
 import com.technical.task.presentation.list.model.UserModel
@@ -22,7 +24,9 @@ class AddUserRepositoryImpl(
 
     override fun addUser(userModel: UserModel): Flow<AddUserState> {
         val async = GlobalScope.async(Dispatchers.IO) {
-            val call = goRestService.addUser(addUserMapper.mapUserToDTO(userModel))
+            val call = goRestService.addUser(
+                generateAuthorizationHeader(),
+                addUserMapper.mapUserToDTO(userModel))
             when(networkController.performNetworkRequest(call)) {
                 is ServiceAction.Success -> flowOf(AddUserState.AddUserSuccess)
                 is ServiceAction.GeneralError,

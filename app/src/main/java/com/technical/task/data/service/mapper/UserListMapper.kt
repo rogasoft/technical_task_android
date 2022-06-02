@@ -11,8 +11,11 @@ class UserListMapper {
             list.forEach {
                 add(
                     UserModel(
+                        id = it.id,
                         name = it.name,
-                        email = it.email
+                        email = it.email,
+                        gender = it.gender,
+                        status = it.status
                     )
                 )
             }

@@ -8,5 +8,7 @@ sealed class UserListViewState {
 
     class LoadListSuccess(val list: List<UserModel>) : UserListViewState()
 
-    object LoadListFailure : UserListViewState()
+    object DeleteSuccess : UserListViewState()
+
+    object GeneralFailure : UserListViewState()
 }

@@ -19,7 +19,13 @@ android {
     }
 
     buildTypes {
+        debug {
+            buildConfigField 'String', "BASE_URL", "\"https://gorest.co.in/public/v2/\""
+            buildConfigField 'String', "ACCESS_TOKEN", "\"2297794a249c60462688b8112104e3854dc430ce79b276b8db886886f9e858a9\""
+        }
         release {
+            buildConfigField 'String', "BASE_URL", "\"https://gorest.co.in/public/v2/\""
+            buildConfigField 'String', "ACCESS_TOKEN", "\"2297794a249c60462688b8112104e3854dc430ce79b276b8db886886f9e858a9\""
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
