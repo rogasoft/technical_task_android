@@ -2,6 +2,7 @@ package com.technical.task.di
 
 import com.google.gson.Gson
 import com.google.gson.GsonBuilder
+import com.technical.task.BuildConfig
 import com.technical.task.data.service.common.GoRestService
 import com.technical.task.data.service.common.NetworkController
 import dagger.Module
@@ -43,7 +44,7 @@ object AppModule {
     @Singleton
     fun provideStandardRetrofit(gson: Gson, okHttpClient: OkHttpClient): Retrofit =
         Retrofit.Builder()
-            .baseUrl(BASE_URL)
+            .baseUrl(BuildConfig.BASE_URL)
             .client(okHttpClient)
             .addConverterFactory(GsonConverterFactory.create(gson))
             .build()
@@ -58,4 +59,3 @@ object AppModule {
 }
 
 private const val CONNECTION_TIMEOUT = 40L
-private const val BASE_URL = "https://gorest.co.in/public/v2/"

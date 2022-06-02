@@ -1,3 +1,8 @@
 package com.technical.task.presentation.list.model
 
-class UserModel(val name: String, val email: String)
+data class UserModel(
+    val id: Int,
+    val name: String,
+    val email: String,
+    val gender: String,
+    val status: String)
