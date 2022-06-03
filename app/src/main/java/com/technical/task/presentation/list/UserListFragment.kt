@@ -14,6 +14,7 @@ import com.technical.task.common.showAlertDialog
 import com.technical.task.common.showDeleteSuccessSnackbar
 import com.technical.task.common.showEmptyListSnackbar
 import com.technical.task.common.showGeneralFailureSnackbar
+import com.technical.task.common.showNetworkFailureSnackbar
 import com.technical.task.common.visible
 import com.technical.task.databinding.FragmentUserListBinding
 import com.technical.task.presentation.dialog.UserDialogFragment
@@ -54,7 +55,6 @@ class UserListFragment : Fragment() {
     }
 
     private fun initView() {
-        binding.root.showGeneralFailureSnackbar()
         with(binding) {
             userListAddButton.setOnClickListener {
                 UserDialogFragment().show(childFragmentManager, TAG)
@@ -62,7 +62,9 @@ class UserListFragment : Fragment() {
         }
         childFragmentManager.setFragmentResultListener(DIALOG_REQUEST_KEY, viewLifecycleOwner) { key, bundle ->
             bundle.getBoolean(DIALOG_RESULT_KEY).let {
-                if (it) userListViewModel.getUserList() }
+                if (it) userListViewModel.getUserList()
+                else loadFailureState()
+            }
         }
     }
 
@@ -74,6 +76,7 @@ class UserListFragment : Fragment() {
                     UserListViewState.EmptyState -> { loadEmptyState() }
                     UserListViewState.LoadingState -> { loadLoadingState() }
                     UserListViewState.DeleteSuccess -> { loadDeleteSuccessState() }
+                    UserListViewState.NetworkFailure -> { loadWrongNetworkState() }
                     UserListViewState.GeneralFailure -> { loadFailureState() }
                 }
             }
@@ -98,7 +101,12 @@ class UserListFragment : Fragment() {
     }
 
     private fun loadDeleteSuccessState() {
+        userListViewModel.getUserList()
         binding.root.showDeleteSuccessSnackbar()
+    }
+
+    private fun loadWrongNetworkState() {
+        binding.root.showNetworkFailureSnackbar()
     }
 
     private fun loadFailureState() {

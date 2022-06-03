@@ -9,6 +9,8 @@
     <!-- Add user dialog strings -->
     <string name="dialog_hint_name">Name</string>
     <string name="dialog_hint_email">Email</string>
+    <string name="dialog_name_validation">Name field is too short</string>
+    <string name="dialog_email_validation">Wrong format of email field</string>
 
     <!-- Dialog delete strings -->
     <string name="dialog_delete_title">Do you want delete this user?</string>
