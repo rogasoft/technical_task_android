@@ -5,6 +5,7 @@ import com.technical.task.data.service.UserDTO
 import com.technical.task.data.service.common.GoRestService
 import com.technical.task.data.service.common.NetworkController
 import com.technical.task.data.service.common.ServiceAction
+import com.technical.task.data.service.common.generateAuthorizationHeader
 import com.technical.task.data.service.mapper.UserListMapper
 import com.technical.task.domain.repository.UserListRepository
 import kotlinx.coroutines.Dispatchers
@@ -22,7 +23,7 @@ class UserListRepositoryImpl(
 
     override fun downloadUserList(): Flow<UserListState> {
         val async = GlobalScope.async(Dispatchers.IO) {
-            val call = goRestService.getUsers()
+            val call = goRestService.getUsers(generateAuthorizationHeader())
             when(val response = networkController.performNetworkRequest(call)) {
                 is ServiceAction.Success -> validateList(response.data)
                 is ServiceAction.GeneralError,

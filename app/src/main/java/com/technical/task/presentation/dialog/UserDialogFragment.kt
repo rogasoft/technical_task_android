@@ -8,6 +8,7 @@ import androidx.fragment.app.DialogFragment
 import androidx.fragment.app.setFragmentResult
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
+import com.technical.task.R
 import com.technical.task.common.DIALOG_REQUEST_KEY
 import com.technical.task.common.DIALOG_RESULT_KEY
 import com.technical.task.common.gone
@@ -57,16 +58,18 @@ class UserDialogFragment : DialogFragment() {
                 when (it) {
                     UserDialogViewState.EmptyState -> {  }
                     UserDialogViewState.LoadingState -> { loadLoadingState() }
+                    UserDialogViewState.NameValidationFailure -> { loadNameValidationFailureState() }
+                    UserDialogViewState.EmailValidationFailure -> { loadEmailValidationFailureState() }
                     UserDialogViewState.AddSuccess -> { loadSuccessState() }
-                    UserDialogViewState.AddFailure -> { dismiss() }
+                    UserDialogViewState.AddFailure -> { loadGlobalFailureState() }
+                    UserDialogViewState.NetworkFailure -> { loadGlobalFailureState() }
                 }
             }
         }
     }
 
     private fun loadSuccessState() {
-        setFragmentResult(DIALOG_REQUEST_KEY, bundleOf(DIALOG_RESULT_KEY to true))
-        dismiss()
+        setDialogResult(true)
     }
 
     private fun loadLoadingState() {
@@ -74,6 +77,23 @@ class UserDialogFragment : DialogFragment() {
             userDialogProgressBar.visible()
             userDialogAddUserButton.gone()
         }
+    }
+
+    private fun loadNameValidationFailureState() {
+        binding.userDialogNameEditText.error = getString(R.string.dialog_name_validation)
+    }
+
+    private fun loadEmailValidationFailureState() {
+        binding.userDialogEmailEditText.error = getString(R.string.dialog_email_validation)
+    }
+
+    private fun loadGlobalFailureState() {
+        setDialogResult(false)
+    }
+
+    private fun setDialogResult(result: Boolean) {
+        setFragmentResult(DIALOG_REQUEST_KEY, bundleOf(DIALOG_RESULT_KEY to result))
+        dismiss()
     }
 
     companion object {

@@ -4,6 +4,7 @@ import com.technical.task.data.model.DeleteUserState
 import com.technical.task.data.service.common.GoRestService
 import com.technical.task.data.service.common.NetworkController
 import com.technical.task.data.service.common.ServiceAction
+import com.technical.task.data.service.common.generateAuthorizationHeader
 import com.technical.task.domain.repository.DeleteUserRepository
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
@@ -19,7 +20,7 @@ class DeleteUserRepositoryImpl(
 
     override fun deleteUser(userId: Int): Flow<DeleteUserState> {
         val async = GlobalScope.async(Dispatchers.IO) {
-            val call = goRestService.deleteUser(userId)
+            val call = goRestService.deleteUser(generateAuthorizationHeader(), userId)
             when(networkController.performNetworkRequest(call)) {
                 is ServiceAction.Success -> flowOf(DeleteUserState.DeleteUserSuccess)
                 is ServiceAction.GeneralError,

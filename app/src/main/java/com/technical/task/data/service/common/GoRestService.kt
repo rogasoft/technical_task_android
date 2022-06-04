@@ -13,13 +13,13 @@ import retrofit2.http.Path
 interface GoRestService {
 
     @GET(USERS)
-    fun getUsers() : Call<List<UserDTO>>
+    fun getUsers(@Header(AUTHORIZATION) token: String) : Call<List<UserDTO>>
 
     @POST(USERS)
     fun addUser(@Header(AUTHORIZATION) token: String, @Body addUserDTO: AddUserDTO) : Call<Any>
 
     @DELETE("$USERS/{$USER_ID}")
-    fun deleteUser(@Path(USER_ID) userId: Int) : Call<Any>
+    fun deleteUser(@Header(AUTHORIZATION) token: String, @Path(USER_ID) userId: Int) : Call<Any>
 }
 
 private const val USERS = "users"

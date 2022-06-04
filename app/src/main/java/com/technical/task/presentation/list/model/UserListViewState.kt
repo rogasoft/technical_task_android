@@ -10,5 +10,7 @@ sealed class UserListViewState {
 
     object DeleteSuccess : UserListViewState()
 
+    object NetworkFailure : UserListViewState()
+
     object GeneralFailure : UserListViewState()
 }
