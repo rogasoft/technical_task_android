@@ -1,8 +1,8 @@
 package com.technical.task.common
 
-import android.util.Patterns
+import androidx.core.util.PatternsCompat
 
-fun String.validateEmailPattern() = Patterns.EMAIL_ADDRESS.matcher(this).matches()
+fun String.validateEmailPattern() = PatternsCompat.EMAIL_ADDRESS.matcher(this).matches()
 
 fun String.validateMinimumLength() = this.length >= MINIMUM_LENGTH
 
