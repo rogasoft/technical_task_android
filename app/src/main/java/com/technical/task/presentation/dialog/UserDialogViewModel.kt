@@ -39,9 +39,8 @@ class UserDialogViewModel @Inject constructor(
                 return
             }
             updateState(UserDialogViewState.LoadingState)
-            val userModel = UserModel(id = 0, name = name, email = email, gender = "male", status = "active")
             viewModelScope.launch(Dispatchers.IO) {
-                addUserUseCase.addUser(userModel).collect {
+                addUserUseCase.addUser(generateUserModel(name, email)).collect {
                     when (it) {
                         AddUserState.AddUserSuccess -> updateState(UserDialogViewState.AddSuccess)
                         AddUserState.AddUserFailure -> updateState(UserDialogViewState.AddFailure)
@@ -62,4 +61,11 @@ class UserDialogViewModel @Inject constructor(
     private fun validateNameField(name: String) = name.validateMinimumLength()
 
     private fun validateEmailField(email: String) = email.validateEmailPattern()
+
+    private fun generateUserModel(name: String, email: String) = UserModel(
+        id = 0,
+        name = name,
+        email = email,
+        gender = "male",
+        status = "active")
 }

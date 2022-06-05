@@ -13,7 +13,7 @@
     <string name="dialog_email_validation">Wrong format of email field</string>
 
     <!-- Dialog delete strings -->
-    <string name="dialog_delete_title">Do you want delete this user?</string>
-    <string name="dialog_delete_positive_button">Delete</string>
+    <string name="dialog_delete_title">Are you sure you want to remove this user?</string>
+    <string name="dialog_delete_positive_button">Ok</string>
     <string name="dialog_delete_negative_button">Cancel</string>
 </resources>
