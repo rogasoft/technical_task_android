@@ -1,3 +1,19 @@
 <resources>
+    <!-- Base strings -->
     <string name="app_name">TechnicalTask</string>
+    <string name="general_failure_message">Something went wrong</string>
+    <string name="network_failure_message">Network is not available</string>
+    <string name="delete_success_message">Delete success</string>
+    <string name="empty_list_message">List is empty</string>
+
+    <!-- Add user dialog strings -->
+    <string name="dialog_hint_name">Name</string>
+    <string name="dialog_hint_email">Email</string>
+    <string name="dialog_name_validation">Name field is too short</string>
+    <string name="dialog_email_validation">Wrong format of email field</string>
+
+    <!-- Dialog delete strings -->
+    <string name="dialog_delete_title">Are you sure you want to remove this user?</string>
+    <string name="dialog_delete_positive_button">Ok</string>
+    <string name="dialog_delete_negative_button">Cancel</string>
 </resources>
